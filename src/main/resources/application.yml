@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: cat,en,dev
+
+com:
+  username: Yolo
+  password: yooolloooo
+  jdbcurl: jomama
