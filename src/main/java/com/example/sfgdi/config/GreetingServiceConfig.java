@@ -2,17 +2,28 @@ package com.example.sfgdi.config;
 
 import com.didericus.pets.PetService;
 import com.didericus.pets.PetServiceFactory;
+import com.example.sfgdi.datasource.FakeDataSource;
 import com.example.sfgdi.repository.EnglishGreetingRepository;
 import com.example.sfgdi.repository.EnglishGreetingRepositoryImpl;
 import com.example.sfgdi.services.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
 
+
+@PropertySource("classpath:datasource.properties")
 
 @Configuration
 public class GreetingServiceConfig {
+
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${com.username}") String username, @Value("${com.password}")String password,@Value("${com.jbdcurl}") String jdbcurl){
+        FakeDataSource fakeDataSource = new FakeDataSource();
+        fakeDataSource.setUserName(username);
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setJbdcurl(jdbcurl);
+
+        return fakeDataSource;
+    }
 
     @Profile({"dog", "default"})
     @Bean
