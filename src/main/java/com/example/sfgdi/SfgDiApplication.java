@@ -1,16 +1,20 @@
 package com.example.sfgdi;
 
+import com.example.sfgdi.config.ConstructorConfig;
 import com.example.sfgdi.config.SfgConfiguration;
 import com.example.sfgdi.controllers.*;
 import com.example.sfgdi.datasource.FakeDataSource;
 import com.example.sfgdi.services.PrototypeBean;
 import com.example.sfgdi.services.SingletonBean;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 
 
 //@ComponentScan(basePackages = {"com.example.sfgdi", "com.didericus.pets"})
+
 @SpringBootApplication
 public class SfgDiApplication {
 
@@ -60,6 +64,8 @@ public class SfgDiApplication {
         PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
         System.out.println(prototypeBean2.getMyScope());
 
+        System.out.println("-------Fake Data Output----------");
+
         FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
         System.out.println(fakeDataSource.getUserName());
         System.out.println(fakeDataSource.getPassword());
@@ -71,6 +77,14 @@ public class SfgDiApplication {
         System.out.println(sfgConfiguration.getUserName());
         System.out.println(sfgConfiguration.getPassword());
         System.out.println(sfgConfiguration.getJbdcurl());
+
+
+        System.out.println("--------------");
+        ConstructorConfig constructorConfig = ctx.getBean(ConstructorConfig.class);
+        System.out.println(constructorConfig.getUserName());
+        System.out.println(constructorConfig.getPassword());
+        System.out.println(constructorConfig.getJdbcurl());
+        
     }
 
 }

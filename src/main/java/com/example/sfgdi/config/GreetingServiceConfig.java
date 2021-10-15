@@ -8,22 +8,21 @@ import com.example.sfgdi.repository.EnglishGreetingRepositoryImpl;
 import com.example.sfgdi.services.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
 
-
+@EnableConfigurationProperties(ConstructorConfig.class)
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(@Value("${com.username}") String username,
-                                  @Value("${com.password}")String password,
-                                  @Value("${com.jdbcurl}") String jdbcurl){
+    FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration){
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUserName(username);
-        fakeDataSource.setPassword(password);
-        fakeDataSource.setJbdcurl(jdbcurl);
+        fakeDataSource.setUserName(sfgConfiguration.getUserName());
+        fakeDataSource.setPassword(sfgConfiguration.getPassword());
+        fakeDataSource.setJbdcurl(sfgConfiguration.getJbdcurl());
 
         return fakeDataSource;
     }
