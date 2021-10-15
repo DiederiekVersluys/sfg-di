@@ -7,16 +7,19 @@ import com.example.sfgdi.repository.EnglishGreetingRepository;
 import com.example.sfgdi.repository.EnglishGreetingRepositoryImpl;
 import com.example.sfgdi.services.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.context.annotation.*;
 
 
 
-
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(@Value("${com.username}") String username, @Value("${com.password}")String password,@Value("${com.jbdcurl}") String jdbcurl){
+    FakeDataSource fakeDataSource(@Value("${com.username}") String username,
+                                  @Value("${com.password}")String password,
+                                  @Value("${com.jdbcurl}") String jdbcurl){
         FakeDataSource fakeDataSource = new FakeDataSource();
         fakeDataSource.setUserName(username);
         fakeDataSource.setPassword(password);
@@ -69,10 +72,10 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
 
-    @Bean
-    ConstructorGreetingService constructorGreetingService(){
-        return new ConstructorGreetingService();
-    }
+//    @Bean
+//    ConstructorGreetingService constructorGreetingService(){
+//        return new ConstructorGreetingService();
+//    }
     @Bean
     PropertyInjectedGreetingService propertyInjectedGreetingService(){
         return new PropertyInjectedGreetingService();

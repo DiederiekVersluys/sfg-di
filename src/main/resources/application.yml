@@ -1,6 +1,9 @@
 spring:
   profiles:
-    active: cat,en,dev
+    active: cat,EN
+    spring:
+      main:
+
 
 com:
   username: Yolo
