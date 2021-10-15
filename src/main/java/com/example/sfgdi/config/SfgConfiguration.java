@@ -1,7 +1,11 @@
-package com.example.sfgdi.datasource;
+package com.example.sfgdi.config;
 
-public class FakeDataSource {
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
+@ConfigurationProperties("com")
+@Configuration
+public class SfgConfiguration {
     private String userName;
     private String password;
     private String jdbcurl;
