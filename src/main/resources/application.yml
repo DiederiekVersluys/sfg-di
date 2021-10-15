@@ -1,10 +1,20 @@
 spring:
   profiles:
-    active: cat,EN
-    spring:
-      main:
+    active:
+      -  dog
+      -  EN
+      -  prod
+
+com:
+  username: ylmUserName
+  password: YmlPassword
+  jdbcurl: YmlUrl
 
 
+---
+
+spring:
+  profiles: prod
 com:
   username: Yolo
   password: yooolloooo
